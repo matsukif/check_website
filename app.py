@@ -1,6 +1,5 @@
 import os
 import streamlit as st
-from pyngrok import ngrok 
 from streamlit_chat import message
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.chat_models import ChatOpenAI
@@ -11,7 +10,7 @@ import tempfile
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 uploaded_file = st.sidebar.file_uploader("upload", type="pdf")
-openai_api_key = st.secrets.OpenAIAPI.openai_api_key #StreamlitのSecretsからAPI keyをとってくる
+os.environ['OPENAI_APY_KEY'] = st.secrets.OpenAIAPI.openai_api_key #StreamlitのSecretsからAPI keyをとってくる
 
 text_splitter = RecursiveCharacterTextSplitter(
   chunk_size = 2000,
